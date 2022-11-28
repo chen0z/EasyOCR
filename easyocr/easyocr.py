@@ -27,6 +27,7 @@ else:
 
 LOGGER = getLogger(__name__)
 
+
 class Reader(object):
 
     def __init__(self, lang_list, gpu=True, model_storage_directory=None,
@@ -106,58 +107,70 @@ class Reader(object):
                     raise ValueError(unknown_lang, 'is not supported')
                 # choose recognition model
                 if lang_list == ['en']:
-                    self.setModelLanguage('english', lang_list, ['en'], '["en"]')
-                    model = recognition_models['gen2']['english_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=setModelLanguage('english', lang_list, ['en'], '["en"]')
+                    #self.setModelLanguage('english', lang_list, ['en'], '["en"]')
+                    #model = recognition_models['gen2']['english_g2']
+                    #recog_network = 'generation2'
                 elif 'th' in lang_list:
-                    self.setModelLanguage('thai', lang_list, ['th','en'], '["th","en"]')
-                    model = recognition_models['gen1']['thai_g1']
-                    recog_network = 'generation1'
+                    recog_network, model=setModelLanguage('thai', lang_list, ['th','en'], '["th","en"]')
+                    #self.setModelLanguage('thai', lang_list, ['th','en'], '["th","en"]')
+                    #model = recognition_models['gen1']['thai_g1']
+                    #recog_network = 'generation1'
                 elif 'ch_tra' in lang_list:
-                    self.setModelLanguage('chinese_tra', lang_list, ['ch_tra','en'], '["ch_tra","en"]')
-                    model = recognition_models['gen1']['zh_tra_g1']
-                    recog_network = 'generation1'
+                    recog_network, model=setModelLanguage('chinese_tra', lang_list, ['ch_tra','en'], '["ch_tra","en"]')
+                    #self.setModelLanguage('chinese_tra', lang_list, ['ch_tra','en'], '["ch_tra","en"]')
+                    #model = recognition_models['gen1']['zh_tra_g1']
+                    #recog_network = 'generation1'
                 elif 'ch_sim' in lang_list:
-                    self.setModelLanguage('chinese_sim', lang_list, ['ch_sim','en'], '["ch_sim","en"]')
-                    model = recognition_models['gen2']['zh_sim_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=setModelLanguage('chinese_sim', lang_list, ['ch_sim','en'], '["ch_sim","en"]')
+                    #self.setModelLanguage('chinese_sim', lang_list, ['ch_sim','en'], '["ch_sim","en"]')
+                    #model = recognition_models['gen2']['zh_sim_g2']
+                    #recog_network = 'generation2'
                 elif 'ja' in lang_list:
-                    self.setModelLanguage('japanese', lang_list, ['ja','en'], '["ja","en"]')
-                    model = recognition_models['gen2']['japanese_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=setModelLanguage('japanese', lang_list, ['ja','en'], '["ja","en"]')
+                    #self.setModelLanguage('japanese', lang_list, ['ja','en'], '["ja","en"]')
+                    #model = recognition_models['gen2']['japanese_g2']
+                    #recog_network = 'generation2'
                 elif 'ko' in lang_list:
-                    self.setModelLanguage('korean', lang_list, ['ko','en'], '["ko","en"]')
-                    model = recognition_models['gen2']['korean_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=setModelLanguage('korean', lang_list, ['ko','en'], '["ko","en"]')
+                    #self.setModelLanguage('korean', lang_list, ['ko','en'], '["ko","en"]')
+                    #model = recognition_models['gen2']['korean_g2']
+                    #recog_network = 'generation2'
                 elif 'ta' in lang_list:
-                    self.setModelLanguage('tamil', lang_list, ['ta','en'], '["ta","en"]')
-                    model = recognition_models['gen1']['tamil_g1']
-                    recog_network = 'generation1'
+                    recog_network, model=setModelLanguage('tamil', lang_list, ['ta','en'], '["ta","en"]')
+                    #self.setModelLanguage('tamil', lang_list, ['ta','en'], '["ta","en"]')
+                    #model = recognition_models['gen1']['tamil_g1']
+                    #recog_network = 'generation1'
                 elif 'te' in lang_list:
-                    self.setModelLanguage('telugu', lang_list, ['te','en'], '["te","en"]')
-                    model = recognition_models['gen2']['telugu_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=setModelLanguage('telugu', lang_list, ['te','en'], '["te","en"]')
+                    #self.setModelLanguage('telugu', lang_list, ['te','en'], '["te","en"]')
+                    #model = recognition_models['gen2']['telugu_g2']
+                    #recog_network = 'generation2'
                 elif 'kn' in lang_list:
-                    self.setModelLanguage('kannada', lang_list, ['kn','en'], '["kn","en"]')
-                    model = recognition_models['gen2']['kannada_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=setModelLanguage('kannada', lang_list, ['kn','en'], '["kn","en"]')
+                    #self.setModelLanguage('kannada', lang_list, ['kn','en'], '["kn","en"]')
+                    #model = recognition_models['gen2']['kannada_g2']
+                    #recog_network = 'generation2'
                 elif set(lang_list) & set(bengali_lang_list):
-                    self.setModelLanguage('bengali', lang_list, bengali_lang_list+['en'], '["bn","as","en"]')
-                    model = recognition_models['gen1']['bengali_g1']
-                    recog_network = 'generation1'
+                    recog_network, model=setModelLanguage('bengali', lang_list, bengali_lang_list+['en'], '["bn","as","en"]')
+                    #self.setModelLanguage('bengali', lang_list, bengali_lang_list+['en'], '["bn","as","en"]')
+                    #model = recognition_models['gen1']['bengali_g1']
+                    #recog_network = 'generation1'
                 elif set(lang_list) & set(arabic_lang_list):
-                    self.setModelLanguage('arabic', lang_list, arabic_lang_list+['en'], '["ar","fa","ur","ug","en"]')
-                    model = recognition_models['gen1']['arabic_g1']
-                    recog_network = 'generation1'
+                    recog_network, model=setModelLanguage('arabic', lang_list, arabic_lang_list+['en'], '["ar","fa","ur","ug","en"]')
+                    #self.setModelLanguage('arabic', lang_list, arabic_lang_list+['en'], '["ar","fa","ur","ug","en"]')
+                    #model = recognition_models['gen1']['arabic_g1']
+                    #recog_network = 'generation1'
                 elif set(lang_list) & set(devanagari_lang_list):
-                    self.setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]')
-                    model = recognition_models['gen1']['devanagari_g1']
-                    recog_network = 'generation1'
+                    recog_network, model=setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]'
+                    #self.setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]')
+                    #model = recognition_models['gen1']['devanagari_g1']
+                    #recog_network = 'generation1'
                 elif set(lang_list) & set(cyrillic_lang_list):
-                    self.setModelLanguage('cyrillic', lang_list, cyrillic_lang_list+['en'],
-                                          '["ru","rs_cyrillic","be","bg","uk","mn","en"]')
-                    model = recognition_models['gen2']['cyrillic_g2']
-                    recog_network = 'generation2'
+                    recog_network, model=self.setModelLanguage('cyrillic', lang_list, cyrillic_lang_list+['en'],'["ru","rs_cyrillic","be","bg","uk","mn","en"]')
+                    #self.setModelLanguage('cyrillic', lang_list, cyrillic_lang_list+['en'],'["ru","rs_cyrillic","be","bg","uk","mn","en"]')
+                    #model = recognition_models['gen2']['cyrillic_g2']
+                    #recog_network = 'generation2'
                 else:
                     self.model_lang = 'latin'
                     model = recognition_models['gen2']['latin_g2']
@@ -277,10 +290,19 @@ class Reader(object):
     
     def setModelLanguage(self, language, lang_list, list_lang, list_lang_string):
         self.model_lang = language
+        if language='thai' or language='chinese_tra' or language='tamil' or language='bengali' or language='arabic' or language='devanagari':
+            recog_network = 'gengeration1'
+            model = recognition_models['gen1'][language+'_g1']
+        else:
+            recog_network = 'gengeration2'
+            model = recognition_models['gen2'][language+'_g2']
+        
         if set(lang_list) - set(list_lang) != set():
             if language == 'ch_tra' or language == 'ch_sim':
                 language = 'chinese'
             raise ValueError(language.capitalize() + ' is only compatible with English, try lang_list=' + list_lang_string)
+    
+        return recog_network, model
 
     def getChar(self, fileName):
         char_file = os.path.join(BASE_PATH, 'character', fileName)
