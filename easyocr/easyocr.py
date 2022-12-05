@@ -162,7 +162,7 @@ class Reader(object):
                     #model = recognition_models['gen1']['arabic_g1']
                     #recog_network = 'generation1'
                 elif set(lang_list) & set(devanagari_lang_list):
-                    recog_network, model=setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]'
+                    recog_network, model=setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]')
                     #self.setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]')
                     #model = recognition_models['gen1']['devanagari_g1']
                     #recog_network = 'generation1'
@@ -240,8 +240,6 @@ class Reader(object):
                 network_params = recog_config['network_params']
             self.recognizer, self.converter = get_recognizer(recog_network, network_params,\
                                                          self.character, separator_list,\
-                                                         dict_list, model_path, device = self.device, quantize=quantize)
-
     def getDetectorPath(self, detect_network):
         if detect_network in self.support_detection_network:
             self.detect_network = detect_network
@@ -290,7 +288,7 @@ class Reader(object):
     
     def setModelLanguage(self, language, lang_list, list_lang, list_lang_string):
         self.model_lang = language
-        if language='thai' or language='chinese_tra' or language='tamil' or language='bengali' or language='arabic' or language='devanagari':
+        if (language='thai') or (language='chinese_tra') or (language='tamil') or (language='bengali') or (language='arabic') or (language='devanagari'):
             recog_network = 'gengeration1'
             model = recognition_models['gen1'][language+'_g1']
         else:
@@ -451,7 +449,7 @@ class Reader(object):
             return result
 
 #將readtext、readtext_batched、readtextlang令作一個class
-class readtextclass(Reader):
+#class readtextclass(Reader):
     def readtext(self, image, decoder = 'greedy', beamWidth= 5, batch_size = 1,\
                  workers = 0, allowlist = None, blocklist = None, detail = 1,\
                  rotation_info = None, paragraph = False, min_size = 20,\
