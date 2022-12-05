@@ -450,6 +450,8 @@ class Reader(object):
         else:
             return result
 
+#將readtext、readtext_batched、readtextlang令作一個class
+class readtextclass(Reader):
     def readtext(self, image, decoder = 'greedy', beamWidth= 5, batch_size = 1,\
                  workers = 0, allowlist = None, blocklist = None, detail = 1,\
                  rotation_info = None, paragraph = False, min_size = 20,\
@@ -457,16 +459,16 @@ class Reader(object):
                  text_threshold = 0.7, low_text = 0.4, link_threshold = 0.4,\
                  canvas_size = 2560, mag_ratio = 1.,\
                  slope_ths = 0.1, ycenter_ths = 0.5, height_ths = 0.5,\
-                 width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1, 
+                 width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1,
                  threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,
                  output_format='standard'):
-        '''
+                '''
         Parameters:
         image: file path or numpy-array or a byte stream object
         '''
         img, img_cv_grey = reformat_input(image)
 
-        horizontal_list, free_list = self.detect(img, 
+        horizontal_list, free_list = self.detect(img,
                                                  min_size = min_size, text_threshold = text_threshold,\
                                                  low_text = low_text, link_threshold = link_threshold,\
                                                  canvas_size = canvas_size, mag_ratio = mag_ratio,\
@@ -493,7 +495,7 @@ class Reader(object):
                  text_threshold = 0.7, low_text = 0.4, link_threshold = 0.4,\
                  canvas_size = 2560, mag_ratio = 1.,\
                  slope_ths = 0.1, ycenter_ths = 0.5, height_ths = 0.5,\
-                 width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1, 
+                 width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1,
                  threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,
                  output_format='standard'):
         '''
@@ -502,7 +504,7 @@ class Reader(object):
         '''
         img, img_cv_grey = reformat_input(image)
 
-        horizontal_list, free_list = self.detect(img, 
+        horizontal_list, free_list = self.detect(img,
                                                  min_size = min_size, text_threshold = text_threshold,\
                                                  low_text = low_text, link_threshold = link_threshold,\
                                                  canvas_size = canvas_size, mag_ratio = mag_ratio,\
@@ -519,12 +521,12 @@ class Reader(object):
                                 workers, allowlist, blocklist, detail, rotation_info,\
                                 paragraph, contrast_ths, adjust_contrast,\
                                 filter_ths, y_ths, x_ths, False, output_format)
-       
+
         char = []
         directory = 'characters/'
         for i in range(len(result)):
             char.append(result[i][1])
-        
+
         def search(arr,x):
             g = False
             for i in range(len(arr)):
@@ -537,11 +539,11 @@ class Reader(object):
             a = result[i]
             b = a + (filename[0:2],)
             return b
-        
+
         for filename in os.listdir(directory):
             if filename.endswith(".txt"):
-                with open ('characters/'+ filename,'rt',encoding="utf8") as myfile:  
-                    chartrs = str(myfile.read().splitlines()).replace('\n','') 
+                with open ('characters/'+ filename,'rt',encoding="utf8") as myfile:
+                    chartrs = str(myfile.read().splitlines()).replace('\n','')
                     for i in range(len(char)):
                         res = search(chartrs,char[i])
                         if res != -1:
@@ -556,7 +558,7 @@ class Reader(object):
                          text_threshold = 0.7, low_text = 0.4, link_threshold = 0.4,\
                          canvas_size = 2560, mag_ratio = 1.,\
                          slope_ths = 0.1, ycenter_ths = 0.5, height_ths = 0.5,\
-                         width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1, 
+                         width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1,
                          threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,
                          output_format='standard'):
         '''
@@ -569,7 +571,7 @@ class Reader(object):
         '''
         img, img_cv_grey = reformat_input_batched(image, n_width, n_height)
 
-        horizontal_list_agg, free_list_agg = self.detect(img, 
+        horizontal_list_agg, free_list_agg = self.detect(img,
                                                  min_size = min_size, text_threshold = text_threshold,\
                                                  low_text = low_text, link_threshold = link_threshold,\
                                                  canvas_size = canvas_size, mag_ratio = mag_ratio,\

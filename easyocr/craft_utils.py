@@ -9,8 +9,8 @@ import cv2
 import math
 from scipy.ndimage import label
 
-""" auxiliary functions """
-# unwarp corodinates
+""" auxiliary functions 輔助功能"""
+# unwarp corodinates展開座標
 def warpCoord(Minv, pt):
     out = np.matmul(Minv, (pt[0], pt[1], 1))
     return np.array([out[0]/out[2], out[1]/out[2]])
