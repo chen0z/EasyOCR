@@ -239,7 +239,8 @@ class Reader(object):
             else:
                 network_params = recog_config['network_params']
             self.recognizer, self.converter = get_recognizer(recog_network, network_params,\
-                                                         self.character, separator_list,\
+                                                        self.character, separator_list,\
+                                                        dict_list, model_path, device = self.device, quantize=quantize)
     def getDetectorPath(self, detect_network):
         if detect_network in self.support_detection_network:
             self.detect_network = detect_network
@@ -288,7 +289,7 @@ class Reader(object):
     
     def setModelLanguage(self, language, lang_list, list_lang, list_lang_string):
         self.model_lang = language
-        if (language='thai') or (language='chinese_tra') or (language='tamil') or (language='bengali') or (language='arabic') or (language='devanagari'):
+        if language in ('thai', 'chinese_tra', 'tamil', 'bengali', 'arabic', 'devanagari'):
             recog_network = 'gengeration1'
             model = recognition_models['gen1'][language+'_g1']
         else:
@@ -460,7 +461,7 @@ class Reader(object):
                  width_ths = 0.5, y_ths = 0.5, x_ths = 1.0, add_margin = 0.1,
                  threshold = 0.2, bbox_min_score = 0.2, bbox_min_size = 3, max_candidates = 0,
                  output_format='standard'):
-                '''
+        '''
         Parameters:
         image: file path or numpy-array or a byte stream object
         '''
@@ -474,7 +475,7 @@ class Reader(object):
                                                  height_ths = height_ths, width_ths= width_ths,\
                                                  add_margin = add_margin, reformat = False,\
                                                  threshold = threshold, bbox_min_score = bbox_min_score,\
-                                                 bbox_min_size = bbox_min_size, max_candidates = max_candidates
+                                                 box_min_size = bbox_min_size, max_candidates = max_candidates
                                                  )
         # get the 1st result from hor & free list as self.detect returns a list of depth 3
         horizontal_list, free_list = horizontal_list[0], free_list[0]
