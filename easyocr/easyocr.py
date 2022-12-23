@@ -450,7 +450,7 @@ class Reader(object):
             return result
 
 #將readtext、readtext_batched、readtextlang令作一個class
-#class readtextclass(Reader):
+class readtextclass(Reader):
     def readtext(self, image, decoder = 'greedy', beamWidth= 5, batch_size = 1,\
                  workers = 0, allowlist = None, blocklist = None, detail = 1,\
                  rotation_info = None, paragraph = False, min_size = 20,\
