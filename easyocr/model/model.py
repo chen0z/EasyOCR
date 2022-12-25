@@ -1,12 +1,15 @@
 import torch.nn as nn
-from .modules import ResNet_FeatureExtractor, BidirectionalLSTM
+from .modules import ResNet_FeatureExtractor, VGG_FeatureExtractor, BidirectionalLSTM
 
 class Model(nn.Module):
 
-    def __init__(self, input_channel, output_channel, hidden_size, num_class):
+    def __init__(self, choosemodel, input_channel, output_channel, hidden_size, num_class):
         super(Model, self).__init__()
         """ FeatureExtraction """
-        self.FeatureExtraction = ResNet_FeatureExtractor(input_channel, output_channel)
+        if choosemodel==ResNet:
+            self.FeatureExtraction = ResNet_FeatureExtractor(input_channel, output_channel)
+        elif choosemodel==VGG:
+            self.FeatureExtraction = VGG_FeatureExtractor(input_channel, output_channel)
         self.FeatureExtraction_output = output_channel  # int(imgH/16-1) * 512
         self.AdaptiveAvgPool = nn.AdaptiveAvgPool2d((None, 1))  # Transform final (imgH/16-1) -> 1
 
