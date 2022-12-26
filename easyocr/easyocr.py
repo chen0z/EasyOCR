@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from .recognition import get_recognizer, get_text
 from .utils import group_text_box, get_image_list, calculate_md5, get_paragraph,\
                    download_and_unzip, printProgressBar, diff, reformat_input,\
